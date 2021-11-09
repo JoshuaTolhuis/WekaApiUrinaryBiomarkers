@@ -3,43 +3,47 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class WekaApiRunner {
-    private final String modelFile = "No_Stage.model";
+    private final String modelFile = "src/main/resources/Logistics.model";
 
-    public static void main(String[] args){
-       WekaApiRunner runner = new WekaApiRunner();
-       runner.start();
+    public static void main(String[] args) {
+        WekaApiRunner runner = new WekaApiRunner();
+        runner.start();
     }
 
     private void start() {
         String data = "weka_data.arff";
-        String unknownFile = "unknown_weka_data.arff";
+        String unknownFile = "weka_data.arff";
 
         try {
             Instances instances = loadArff(data);
+            printInstances(instances);
             Logistic log = buildClassifier(instances);
-            saveClassifier(log);
-            Logistic fromFile = loadClassifier();
-            Instances unknownInstances = loadArff(unknownFile);
-            System.out.println("\nunclassified unknownInstances = \n" + unknownInstances);
-            classifyNewInstance(fromFile, unknownInstances);
+            Logistic classifier = loadClassifier();
+            Instances classification = classifyNewInstance(classifier, instances);
+            writeToFile(classification);
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void classifyNewInstance(Logistic log, Instances unknownInstances) throws Exception {
+
+    private Instances classifyNewInstance(Logistic log, Instances unknownInstances) throws Exception {
         // create copy
         Instances labeled = new Instances(unknownInstances);
         // label instances
         for (int i = 0; i < unknownInstances.numInstances(); i++) {
             double clsLabel = log.classifyInstance(unknownInstances.instance(i));
+            System.out.println(labeled.instance(i));
             labeled.instance(i).setClassValue(clsLabel);
         }
         System.out.println("\nNew, labeled = \n" + labeled);
+        return labeled;
     }
 
 
@@ -65,13 +69,6 @@ public class WekaApiRunner {
         return (Logistic) weka.core.SerializationHelper.read(modelFile);
     }
 
-    private void saveClassifier(Logistic log) throws Exception {
-        //post 3.5.5
-        // serialize model
-        weka.core.SerializationHelper.write(modelFile, log);
-
-    }
-
     private Logistic buildClassifier(Instances instances) throws Exception {
         String[] options = new String[1];
         options[0] = "-R 1.0E-8";
@@ -93,5 +90,12 @@ public class WekaApiRunner {
         } catch (Exception e) {
             throw new IOException("could not read from file");
         }
+    }
+
+
+    private void writeToFile(Instances classification) throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter("classification.csv", "UTF-8");
+        writer.println(classification);
+        writer.close();
     }
 }
