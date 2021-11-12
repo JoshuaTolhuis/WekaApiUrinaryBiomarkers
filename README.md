@@ -2,7 +2,7 @@
 Thema 9 - Java Weka Wrapper - Joshua Tolhuis - Version 1.0
 -----
 
-This repo contains the java wrapper to classify instances given by a user. It will classify what type of systemic scleroris someone has based on antibody data the user will give as input. 
+This repo contains the java wrapper to classify instances given by a user. It will classify what stage of pancreatic cancer someone has based on biomarker data the user will give as input. 
 
 ## Dependencies
 
