@@ -1,7 +1,6 @@
 package nl.bioinf.jotolhuis;
 
 import org.apache.commons.cli.*;
-
 import weka.classifiers.functions.Logistic;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
@@ -23,7 +22,6 @@ public class WekaApiRunner {
     String[] arguments;
     private static final String HELP = "help";
     private static final String FILE = "file-name";
-    private final String wekaFile = "Logistics.model";
 
     private Options options;
     /**
@@ -92,8 +90,7 @@ public class WekaApiRunner {
                 helpFormatter.printHelp("Pancreatic Cancer Predictor", this.options, true);
                 return null;
             } else if (command.hasOption(FILE)){
-                String fileName = command.getOptionValue(FILE);
-                return fileName;
+                return command.getOptionValue(FILE);
             }
         } catch (ParseException e) {
             // Printing the help when something goes wrong
@@ -126,9 +123,7 @@ public class WekaApiRunner {
      * @return Logistic object made from the .model Logistics file.
      */
     private static Logistic loadClassifier() throws Exception {
-        // Load in the Logistics model
-        String modelFile = "Logistics.model";
-        return (Logistic) weka.core.SerializationHelper.read(modelFile);
+        return (Logistic) weka.core.SerializationHelper.read("../../src/main/resources/Logistics.model");
     }
 
     /**
@@ -138,7 +133,7 @@ public class WekaApiRunner {
      */
     private Instances loadData() throws IOException {
         try {
-            ConverterUtils.DataSource source = new ConverterUtils.DataSource("unknowndata/data.arff");
+            ConverterUtils.DataSource source = new ConverterUtils.DataSource("weka_data.arff");
             Instances data = source.getDataSet();
             if (data.classIndex() == -1)
                 data.setClassIndex(data.numAttributes() - 1);
@@ -155,7 +150,7 @@ public class WekaApiRunner {
      * @param classification: The classification
      */
     private static void writeToFile(Instances classification) throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter writer = new PrintWriter("classification.csv", "UTF-8");
+        PrintWriter writer = new PrintWriter("../../src/main/resources/classification.csv", "UTF-8");
         writer.println(classification);
         writer.close();
     }

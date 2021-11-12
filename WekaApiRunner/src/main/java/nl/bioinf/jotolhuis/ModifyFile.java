@@ -1,8 +1,6 @@
 package nl.bioinf.jotolhuis;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,6 +15,7 @@ public class ModifyFile {
         ProcessBuilder pb = new ProcessBuilder("Rscript", "R_script.R", unknownFile);
         Process p = pb.start();
 
+        //process needs some time to read, sleep to prevent error
         TimeUnit.SECONDS.sleep(5);
 
         System.out.println("DONE");
