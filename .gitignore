@@ -1,9 +1,15 @@
 # Compiled class file
 *.class
 
-# Log file
+# Log files
 *.log
 
+# Maven
+target/
+dist/
+
+# JetBrains IDE
+.idea/
 # BlueJ files
 *.ctxt
 
@@ -21,3 +27,19 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Unit test reports
+TEST*.xml
+
+# Applications
+*.app
+*.exe
+*.war
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
