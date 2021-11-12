@@ -29,11 +29,11 @@ Navigate, on the terminal, to the WekaApiRunner/build/libs/ folder.
 Run the script like this:  
     ```bash
     ~$ java -jar WekaApiRunner-1.0-SNAPSHOT-all.jar -f [filename] 
-    ```
+    ```  
 For help run it like this:  
     ```bash
     ~$ java -jar WekaApiRunner-1.0-SNAPSHOT-all.jar -h  
-    ```
+    ```  
 ## The output
 
 The output with the classified labels will be printed on the terminal and look like this:  
@@ -48,5 +48,5 @@ Next to the output on the screen it will also be written to a file. This file is
 
 ## Contact
 
-For questions about the program please use the following email adress:
+For questions about the program please use the following email adress:  
 j.o.tolhuis@st.hanze.nl
