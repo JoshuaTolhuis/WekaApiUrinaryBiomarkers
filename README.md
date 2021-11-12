@@ -27,13 +27,16 @@ The jar file can be found in WekaApiRunner/build/libs/.
 Drag the .csv file of your choice into the WekaApiRunner/build/libs/ folder.  
 Navigate, on the terminal, to the WekaApiRunner/build/libs/ folder.  
 Run the script like this:  
-    ~$ java -jar WekaApiRunner-1.0-SNAPSHOT-all.jar -f <filename>  
+    ```bash
+    ~$ java -jar WekaApiRunner-1.0-SNAPSHOT-all.jar -f [filename] 
+    ```
 For help run it like this:  
+    ```bash
     ~$ java -jar WekaApiRunner-1.0-SNAPSHOT-all.jar -h  
-
+    ```
 ## The output
 
-The output with the classified labels will be printed on the terminal and look like this:
+The output with the classified labels will be printed on the terminal and look like this:  
 3,710.8,0.19227,3.055294,32.89096,0  
 3,941,0.46371,1.044345,14.36436,0  
 3,13740,0.32799,5.232527,123.10473,0  
