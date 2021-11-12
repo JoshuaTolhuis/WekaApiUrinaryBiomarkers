@@ -21,10 +21,23 @@ dependencies {
     // https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/weka-stable
     implementation group: 'nz.ac.waikato.cms.weka', name: 'weka-stable', version: '3.8.0'
     testImplementation group: 'junit', name: 'junit', version: '4.12'
+    implementation('commons-cli:commons-cli:1.4')
 }
 
 jar {
     manifest {
-        attributes "Main-Class": "nl.bioinf.WekaApiRunner"
+        attributes "Main-Class": "nl.bioinf.jotolhuis.WekaApiRunner"
+    }
+    from {
+        (configurations.compile.findAll { !it.path.endsWith(".pom") }).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
 }
+shadowJar {
+    manifest {
+        attributes "Main-Class": "nl.bioinf.jotolhuis.WekaApiRunner"
+    }
+}
+
+

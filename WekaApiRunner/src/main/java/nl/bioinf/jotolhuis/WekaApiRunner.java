@@ -1,3 +1,7 @@
+package nl.bioinf.jotolhuis;
+
+
+
 import org.apache.commons.cli.*;
 
 import weka.classifiers.functions.Logistic;
