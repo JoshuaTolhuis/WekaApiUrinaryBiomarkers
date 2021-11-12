@@ -1,13 +1,10 @@
 package nl.bioinf.jotolhuis;
 
-
-
 import org.apache.commons.cli.*;
 
 import weka.classifiers.functions.Logistic;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils;
-import weka.core.converters.ConverterUtils.DataSource;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -26,6 +23,7 @@ public class WekaApiRunner {
     String[] arguments;
     private static final String HELP = "help";
     private static final String FILE = "file-name";
+    private final String wekaFile = "Logistics.model";
 
     private Options options;
     /**
