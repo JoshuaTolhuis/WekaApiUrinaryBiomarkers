@@ -17,6 +17,7 @@ Dependencies:
 This project is based around a inputfile and will work with a certain input to function
 Example Input Data:
 |plasma_CA19_9|Creatinine|LYVE1|RGE1B|TFF1|
+This project doesn't work with single instance inputs via terminal or bash
 
 ## Set-Up
 
